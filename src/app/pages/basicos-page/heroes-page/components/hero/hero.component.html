@@ -1,0 +1,21 @@
+<h1>{{ name }}</h1>
+<dl>
+  <td>Nombre</td>
+  <dd>{{ name }}</dd>
+  <td>Edad</td>
+  <dd>{{ age }}</dd>
+  <td>Método</td>
+  <dd>{{ name }} - {{ age }}</dd>
+  <td>Capitalizado</td>
+  <dd>{{ name | uppercase }}</dd>
+</dl>
+
+<div class="flex gap-1">
+  @if ('ironman' === name.toLowerCase()) {
+  <p-button (onClick)="onChangeName()" label="Cambiar nombre" />
+  } @if (45 === age) {
+  <p-button (onClick)="onChangeAge()" label="Cambiar edad" />
+  } @if ('ironman' !== name.toLowerCase() || 45 !== age) {
+  <p-button (onClick)="onReset()" label="Reset" />
+  }
+</div>

@@ -1,0 +1,16 @@
+<h3>Lista de Héroes</h3>
+@if (!currentHero) {
+<h3>No ha borrado un heroe aún</h3>
+} @else {
+<h3>
+  Heroe borrado: <span>{{ currentHero }}</span>
+</h3>
+}
+
+<p-button (onClick)="onPopHero()" label="Quitar heroe" />
+
+<ul>
+  @for (name of heroNames; track $index) {
+  <li>{{ name }}</li>
+  }
+</ul>

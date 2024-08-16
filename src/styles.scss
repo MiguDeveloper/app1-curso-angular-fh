@@ -3,3 +3,9 @@
 @import "primeng/resources/primeng.css";
 @import "../node_modules/primeflex/primeflex.scss";
 @import "primeicons/primeicons.css";
+
+a.p-menuitem-link-active {
+  outline: none !important;
+  user-select: none !important;
+  font-weight: bold;
+}

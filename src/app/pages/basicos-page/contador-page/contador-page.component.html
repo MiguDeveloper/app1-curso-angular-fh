@@ -1,0 +1,12 @@
+<h2>{{ title }}</h2>
+<h3>Counter {{ counter }}</h3>
+<div class="flex gap-1">
+  <p-button (click)="onIncrease(-1)" label="1" icon="pi pi-minus" />
+  <p-button (click)="onResetCounter()" label="1" icon="pi pi-home" />
+  <p-button
+    (click)="onIncrease(1)"
+    label="1"
+    icon="pi pi-plus"
+    iconPos="right"
+  />
+</div>

@@ -1,0 +1,16 @@
+<h1>DBZ Personajes</h1>
+<hr />
+<div class="grid">
+  <div class="col-12 md:col-4">
+    <app-dbz-list
+      (removeCharacter)="toggleRemoveCharacter($event)"
+      [personajes]="characters"
+    />
+  </div>
+  <div class="col-12 md:col-4">
+    <app-dbz-add-character
+      (character)="toggleAddCharacter($event)"
+      [title]="'Agregar Personaje DBZ'"
+    />
+  </div>
+</div>
