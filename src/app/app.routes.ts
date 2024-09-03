@@ -11,6 +11,10 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/home-page/home-pages.routes'),
       },
       {
+        path: 'escalo',
+        loadChildren: () => import('./pages/home-page/home-pages.routes'),
+      },
+      {
         path: 'basicos',
         loadChildren: () => import('./pages/basicos-page/basicos-page.routes'),
       },

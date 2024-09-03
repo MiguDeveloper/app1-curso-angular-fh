@@ -20,6 +20,23 @@ export class NavbarComponent implements OnInit {
         routerLink: ['/', 'home'],
       },
       {
+        label: 'Escalo',
+        icon: 'pi pi-home',
+        items: [
+          [
+            {
+              label: 'Recursos Humanos',
+              items: [
+                {
+                  label: 'Permiso Laboral',
+                  routerLink: ['/', 'escalo', 'solicitud-permiso-laboral'],
+                },
+              ],
+            },
+          ],
+        ],
+      },
+      {
         label: 'Basicos',
         icon: 'pi pi-box',
         items: [
@@ -37,8 +54,7 @@ export class NavbarComponent implements OnInit {
               label: 'Basico 2',
               items: [
                 { label: 'dbz', routerLink: ['/', 'basicos-2', 'dbz'] },
-                { label: 'Chair' },
-                { label: 'Table' },
+                { label: 'GifApp', routerLink: ['/', 'basicos-2', 'gif-app'] },
               ],
             },
             {

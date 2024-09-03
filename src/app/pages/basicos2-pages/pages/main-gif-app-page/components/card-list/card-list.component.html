@@ -1,0 +1,10 @@
+<div class="card flex justify-content-center">
+  <p-card [header]="gif.title" [style]="{ width: '360px' }">
+    <ng-template pTemplate="header">
+      <shared-lazy-image
+        [url]="gif.images.downsized_medium.url"
+        [alt]="gif.title || 'No title'"
+      />
+    </ng-template>
+  </p-card>
+</div>

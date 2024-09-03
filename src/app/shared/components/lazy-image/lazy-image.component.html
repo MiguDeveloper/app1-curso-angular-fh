@@ -1,0 +1,9 @@
+<img
+  [alt]="alt"
+  [src]="url"
+  (load)="onLoad()"
+  [ngStyle]="{ display: hasLoaded ? '' : 'none' }"
+/>
+@if (!hasLoaded) {
+<img src="assets/loaders/rings.svg" class="surface-500" height="35" alt="" />
+}

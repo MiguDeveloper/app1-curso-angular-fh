@@ -1,0 +1,11 @@
+<div class="flex">
+  <gif-sidebar class="col md:col-3" />
+  <div class="col md:col-9 flex flex-column">
+    <gift-search-box />
+    <div class="flex flex-wrap gap-3 mt-3">
+      @for (gif of gifsList; track $index) {
+      <gift-card-list [gif]="gif" />
+      }
+    </div>
+  </div>
+</div>
