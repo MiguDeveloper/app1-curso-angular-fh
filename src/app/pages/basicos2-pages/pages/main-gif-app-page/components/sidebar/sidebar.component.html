@@ -1,8 +1,8 @@
 <p-menu [model]="items">
   <ng-template pTemplate="item" let-item>
     <a class="p-menuitem-link">
-      <span [class]="item.icon"></span>
-      <span class="ml-2">{{ item.label | titlecase }}</span>
+      <span class="text-sm" [class]="item.icon"></span>
+      <span class="ml-2 text-sm">{{ item.label | titlecase }}</span>
     </a>
   </ng-template>
 </p-menu>

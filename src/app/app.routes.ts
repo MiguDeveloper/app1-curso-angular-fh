@@ -12,7 +12,7 @@ export const routes: Routes = [
       },
       {
         path: 'escalo',
-        loadChildren: () => import('./pages/home-page/home-pages.routes'),
+        loadChildren: () => import('./pages/escalo-page/escalo-page.routes'),
       },
       {
         path: 'basicos',

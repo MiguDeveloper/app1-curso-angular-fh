@@ -1,0 +1,220 @@
+<div class="fadein animation-duration-1000">
+  <h2 class="text-lg font-semibold">Presencias por días/horas</h2>
+  <p-divider />
+  <form [formGroup]="frmPresenciaPorDiasHoras" (ngSubmit)="submitForm()">
+    <div class="grid">
+      <div class="col-12">
+        <ng-container formGroupName="tipoPresencia">
+          <div class="grid">
+            <div class="col-12">
+              <label class="text-sm font-semibold block mb-2">Motivo</label>
+              <div class="flex flex-column gap-2">
+                @for (motivo of motivosPresencia; track $index) {
+                <div class="flex align-items-center">
+                  <p-radioButton
+                    [inputId]="motivo"
+                    formControlName="tipo"
+                    [value]="motivo"
+                  />
+                  <label [for]="motivo" class="ml-2 text-sm">
+                    {{ motivo }}
+                  </label>
+                </div>
+                }
+              </div>
+              @if (isInvalidTipoPresencia) {
+              <div
+                mch-msgValidationField
+                [errors]="tipoPresenciaField.errors"
+                class="text-sm mt-1 text-red-600"
+              ></div>
+              }
+            </div>
+            @if (hasDescriptionOther) {
+            <div class="col-12">
+              <div class="fadeindown animation-duration-500">
+                <label for="detalle" class="text-sm font-semibold block mb-2"
+                  >Detalle</label
+                >
+                <input
+                  type="text"
+                  id="detalle"
+                  pInputText
+                  formControlName="detalle"
+                  class="p-inputtext p-component p-element"
+                  [ngClass]="{
+                    'ng-invalid ng-dirty': isInvalidDetallePresencia
+                  }"
+                />
+                @if (isInvalidDetallePresencia) {
+                <div
+                  mch-msgValidationField
+                  [errors]="detalleTipoPresenciaField.errors"
+                  class="text-sm mt-1 text-red-600"
+                ></div>
+                }
+              </div>
+            </div>
+            }
+          </div>
+        </ng-container>
+      </div>
+      <div class="col-12">
+        <label for="fechaPresencia" class="text-sm font-semibold block mb-2"
+          >Fecha o rango
+        </label>
+
+        <p-calendar
+          formControlName="fechaPresencia"
+          selectionMode="range"
+          [numberOfMonths]="1"
+          [readonlyInput]="true"
+          [showIcon]="true"
+          [iconDisplay]="'input'"
+          inputId="fechaPresencia"
+          [ngClass]="{ 'ng-invalid ng-dirty': isInvalidFechaPresencia }"
+        />
+        @if (fechaPresenciaField.value?.length) {
+        <p class="text-gray-400 text-xs font-italic m-0 mt-1">
+          Fecha: {{ fechaPresenciaField.value | mchFormatDate }}
+        </p>
+        } @if (isInvalidFechaPresencia) {
+        <div
+          mch-msgValidationField
+          [errors]="fechaPresenciaField.errors"
+          class="text-sm mt-1 text-red-600"
+        ></div>
+        }
+      </div>
+      <div class="col-12">
+        <div class="flex gap-2">
+          <div>
+            <label for="calendar-start" class="text-sm font-semibold block mb-2"
+              >Hora inicio
+            </label>
+            <p-calendar
+              formControlName="horaInicio"
+              inputId="calendar-start"
+              [timeOnly]="true"
+              [iconDisplay]="'input'"
+              [showIcon]="true"
+              [ngClass]="{ 'ng-invalid ng-dirty': isInvalidHoraInicio }"
+            >
+              <ng-template pTemplate="inputicon">
+                <i
+                  class="pi pi-clock pointer-events-none pointer-events-none"
+                ></i>
+              </ng-template>
+            </p-calendar>
+            @if (isInvalidHoraInicio) {
+            <div
+              mch-msgValidationField
+              [errors]="horaInicioField.errors"
+              class="text-sm mt-1 text-red-600"
+            ></div>
+            }
+          </div>
+          <div>
+            <label for="calendar-end" class="text-sm font-semibold block mb-2"
+              >Hora fin
+            </label>
+            <p-calendar
+              formControlName="horaFin"
+              inputId="calendar-end"
+              [timeOnly]="true"
+              [iconDisplay]="'input'"
+              [showIcon]="true"
+              [ngClass]="{ 'ng-invalid ng-dirty': isInvalidHoraFin }"
+            >
+              <ng-template pTemplate="inputicon">
+                <i
+                  class="pi pi-clock pointer-events-none pointer-events-none"
+                ></i>
+              </ng-template>
+            </p-calendar>
+            @if (isInvalidHoraFin) {
+            <div
+              mch-msgValidationField
+              [errors]="horaFinField.errors"
+              class="text-sm mt-1 text-red-600"
+            ></div>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <p-button
+          label="Aceptar"
+          [rounded]="true"
+          type="submit"
+          class="text-sm"
+        ></p-button>
+      </div>
+    </div>
+  </form>
+  <p-dialog
+    header="Header"
+    [(visible)]="visible"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <ng-template pTemplate="header">
+      <div class="inline-flex align-items-center justify-content-center gap-2">
+        <span class="font-semibold"> Confirmación de solicitud </span>
+      </div>
+    </ng-template>
+    <p class="text-sm">Verifica los datos para confirmar tu solicitud:</p>
+    <div class="flex flex-column gap-2">
+      <div class="text-sm flex align-items-center gap-2">
+        <i class="pi pi-check-circle"></i> Motivo:
+        <span class="font-semibold">{{ tipoPresenciaField.value }}</span>
+      </div>
+      @if (detalleTipoPresenciaField.value?.length) {
+      <div class="text-sm flex align-items-center gap-2">
+        <i class="pi pi-comment"></i> Detalle:
+        <span class="font-semibold">{{ detalleTipoPresenciaField.value }}</span>
+      </div>
+      }
+
+      <div class="text-sm flex align-items-center gap-2">
+        <i class="pi pi-calendar"></i> Fecha:
+        <span class="font-semibold">{{
+          fechaPresenciaField.value | mchFormatDate
+        }}</span>
+      </div>
+      <div class="text-sm flex align-items-center gap-2">
+        <i class="pi pi-clock"></i> Hora:
+        <span class="font-semibold">{{
+          horaInicioField.value | date : "h:mm a"
+        }}</span>
+        -
+        <span class="font-semibold">{{
+          horaFinField.value | date : "h:mm a"
+        }}</span>
+      </div>
+    </div>
+    <ng-template pTemplate="footer">
+      <div class="flex flex-wrap gap-1 justify-content-end">
+        <p-button
+          label="Cancelar"
+          [text]="true"
+          severity="secondary"
+          class="text-sm"
+          (onClick)="visible = false"
+        />
+        <p-button
+          label="Confirmar"
+          icon="pi pi-check"
+          severity="success"
+          class="text-sm"
+          (onClick)="confirmarSolicitud()"
+        />
+      </div>
+    </ng-template>
+  </p-dialog>
+  <p-toast
+    position="top-center"
+    [breakpoints]="{ '576px': { width: '100%', right: '0', left: '0' } }"
+  />
+</div>

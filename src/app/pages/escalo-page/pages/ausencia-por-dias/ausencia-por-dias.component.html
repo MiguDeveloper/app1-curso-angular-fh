@@ -1,0 +1,120 @@
+<div class="fadein animation-duration-1000">
+  <h2 class="text-base font-semibold">Solicitud de ausencia por días</h2>
+  <p-divider />
+  <form [formGroup]="frmAusenciaPorDias" (ngSubmit)="onSubmit()">
+    <div class="grid">
+      <div class="col-12">
+        <label class="text-sm font-semibold block mb-2">Motivo</label>
+        <div class="flex flex-column gap-2">
+          @for (motivo of motivosAusencia; track $index) {
+          <div class="flex align-items-center">
+            <p-radioButton
+              [inputId]="motivo"
+              formControlName="tipoAusencia"
+              [value]="motivo"
+            />
+            <label [for]="motivo" class="ml-2 text-sm">
+              {{ motivo }}
+            </label>
+          </div>
+          }
+        </div>
+        @if (isInvalidTipoAusencia) {
+        <div
+          mch-msgValidationField
+          [errors]="tipoAusenciaField.errors"
+          class="text-sm mt-1 text-red-600"
+        ></div>
+        }
+      </div>
+      <div class="col-12">
+        <label for="rangoAusencia" class="text-sm font-semibold block mb-2"
+          >Fecha o rango
+        </label>
+
+        <p-calendar
+          formControlName="rangoAusencia"
+          selectionMode="range"
+          [numberOfMonths]="1"
+          [readonlyInput]="true"
+          [showIcon]="true"
+          [iconDisplay]="'input'"
+          [inline]="true"
+          inputId="rangoAusencia"
+          [ngClass]="{ 'ng-invalid ng-dirty': isInvalidRandoFechas }"
+        />
+        @if (rangoAusenciaField.value.length) {
+        <p class="text-gray-400 text-xs font-italic m-0 mt-1">
+          Fecha: {{ rangoAusenciaField.value | mchFormatDate }}
+        </p>
+        } @if (isInvalidRandoFechas) {
+        <div
+          mch-msgValidationField
+          [errors]="rangoAusenciaField.errors"
+          class="text-sm mt-1 text-red-600"
+        ></div>
+        }
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12">
+        <p-button
+          label="Aceptar"
+          [rounded]="true"
+          type="submit"
+          class="text-sm"
+        ></p-button>
+      </div>
+    </div>
+  </form>
+
+  <p-dialog
+    header="Header"
+    [(visible)]="visible"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <ng-template pTemplate="header">
+      <div class="inline-flex align-items-center justify-content-center gap-2">
+        <span class="font-semibold"> Confirmación de solicitud </span>
+      </div>
+    </ng-template>
+    <p class="text-sm">Verifica los datos para confirmar tu solicitud:</p>
+    <div class="flex flex-column gap-2">
+      <div class="text-sm flex align-items-center gap-2">
+        <i class="pi pi-check-circle"></i> Motivo:
+        <span class="font-semibold">{{ tipoAusenciaField.value }}</span>
+      </div>
+      <div class="text-sm flex align-items-center gap-2">
+        <i class="pi pi-calendar"></i> Fecha:
+        <span class="font-semibold">{{
+          rangoAusenciaField.value | mchFormatDate
+        }}</span>
+      </div>
+    </div>
+    <ng-template pTemplate="footer" class="flex gap-2">
+      <div class="flex flex-wrap gap-1 justify-content-end">
+        <p-button
+          label="Cancelar"
+          [text]="true"
+          severity="secondary"
+          class="text-sm"
+          (onClick)="visible = false"
+        />
+        <p-button
+          label="Confirmar"
+          icon="pi pi-check"
+          severity="success"
+          class="text-sm"
+          (onClick)="confirmarSolicitud()"
+        />
+      </div>
+    </ng-template>
+  </p-dialog>
+
+  <p-toast
+    position="top-center"
+    [breakpoints]="{ '576px': { width: '100%', right: '0', left: '0' } }"
+  />
+</div>
