@@ -30,4 +30,9 @@ export const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'auth',
+    title: 'Autenticación',
+    loadChildren: () => import('./pages/auth-page/auth-page.routes'),
+  },
 ];
