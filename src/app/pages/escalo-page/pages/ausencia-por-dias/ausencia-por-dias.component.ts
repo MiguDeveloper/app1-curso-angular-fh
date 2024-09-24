@@ -15,6 +15,10 @@ import { DividerModule } from 'primeng/divider';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import confetti from 'canvas-confetti';
+import { ItemModal } from '../../models/item-modal.interface';
+import { ModalConfirmComponent } from '../../components/modal-confirm/modal-confirm.component';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { MOTIVOS_AUSENCIA } from '../../data/constantes';
 @Component({
   selector: 'app-ausencia-por-dias',
   standalone: true,
@@ -28,27 +32,23 @@ import confetti from 'canvas-confetti';
     FormatDatePipe,
     DividerModule,
     ToastModule,
+    ModalConfirmComponent,
   ],
   templateUrl: './ausencia-por-dias.component.html',
   styleUrl: './ausencia-por-dias.component.scss',
-  providers: [MessageService],
+  providers: [MessageService, DialogService],
 })
 export class AusenciaPorDiasComponent implements OnInit {
   private readonly _fb = inject(FormBuilder);
   private readonly _messageService = inject(MessageService);
-  motivosAusencia = [
-    'Vacaciones',
-    'Licencia por paternidad/maternidad',
-    'Duelo familiar',
-    'Licencia por adopción',
-    'Otros',
-  ];
+  ref: DynamicDialogRef | undefined;
+  motivosAusencia = MOTIVOS_AUSENCIA;
   frmAusenciaPorDias = this._fb.nonNullable.group({
     tipoAusencia: ['', Validators.required],
     rangoAusencia: [<Array<Date | null>>[], Validators.required],
   });
-  visible = false;
 
+  constructor(public dialogService: DialogService) {}
   ngOnInit(): void {}
 
   get tipoAusenciaField(): FormControl<string> {
@@ -60,25 +60,46 @@ export class AusenciaPorDiasComponent implements OnInit {
   }
 
   get isInvalidTipoAusencia() {
-    return (
-      this.frmAusenciaPorDias.get('tipoAusencia')?.invalid &&
-      this.frmAusenciaPorDias.get('tipoAusencia')?.touched
-    );
+    return this.tipoAusenciaField?.invalid && this.tipoAusenciaField?.touched;
   }
 
   get isInvalidRandoFechas() {
-    return (
-      this.frmAusenciaPorDias.get('rangoAusencia')?.invalid &&
-      this.frmAusenciaPorDias.get('rangoAusencia')?.touched
-    );
+    return this.rangoAusenciaField?.invalid && this.rangoAusenciaField?.touched;
   }
 
   onSubmit() {
-    console.log('submit');
     if (this.frmAusenciaPorDias.invalid) {
       this.frmAusenciaPorDias.markAllAsTouched();
       return;
     }
+
+    const itemsMessage: ItemModal[] = [
+      {
+        icon: 'pi pi-check-circle',
+        label: 'Motivo',
+        value: this.tipoAusenciaField.value,
+      },
+      {
+        icon: 'pi pi-calendar',
+        label: 'Fechas',
+        pipe: 'mchFormatDate',
+        value: this.rangoAusenciaField.value,
+      },
+    ];
+
+    this.ref = this.dialogService.open(ModalConfirmComponent, {
+      header: 'Confirmación de solicitud',
+      data: { messages: itemsMessage },
+    });
+
+    this.ref.onClose.subscribe((result) => {
+      if (result) {
+        this.confirmarSolicitud();
+      }
+    });
+  }
+
+  confirmarSolicitud() {
     const { tipoAusencia, rangoAusencia } = this.frmAusenciaPorDias.value;
     const rangos = rangoAusencia!.map((fecha) =>
       fecha ? new Date(fecha).toISOString() : null
@@ -95,24 +116,19 @@ export class AusenciaPorDiasComponent implements OnInit {
       tipoAusencia,
       rangoAusencia: newDates,
     };
-    console.log('request', request);
 
-    this.showDialog();
-  }
-
-  confirmarSolicitud() {
     const tipoSolicitud = this.frmAusenciaPorDias.controls.tipoAusencia.value;
 
     if (tipoSolicitud === 'Vacaciones') {
       this.celebrate();
     }
-    this.hideDialog();
+
     this.frmAusenciaPorDias.reset();
 
     this._messageService.add({
       severity: 'success',
       summary: 'Registro de solicitud',
-      detail: `Tu solicitud ha sido registrada con éxito`,
+      detail: 'Tu solicitud ha sido registrada con éxito',
     });
   }
 
@@ -127,13 +143,5 @@ export class AusenciaPorDiasComponent implements OnInit {
     });
 
     setTimeout(() => confetti.reset(), duration);
-  }
-
-  showDialog() {
-    this.visible = true;
-  }
-
-  hideDialog() {
-    this.visible = false;
   }
 }

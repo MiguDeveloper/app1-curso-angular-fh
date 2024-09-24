@@ -5,8 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true,
 })
 export class FormatDatePipe implements PipeTransform {
-  transform(dates: Array<Date | null> | Date): string {
+  transform(dates: string | Array<Date | null> | Date): string {
     console.log('value', dates);
+    if (typeof dates === 'string') {
+      return '';
+    }
     if (dates instanceof Date) {
       const dateUnique = new Date(dates).toLocaleDateString('es-ES', {
         year: 'numeric',
