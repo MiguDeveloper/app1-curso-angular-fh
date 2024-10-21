@@ -5,7 +5,7 @@
   <div class="text-sm flex align-items-center gap-2">
     <i [class]="item.icon"></i> {{ item.label }}:
     <span class="font-semibold">
-      @if (item.pipe) {
+      @if (item.pipe === 'date') {
       {{ item.value | mchFormatDate }}
       } @else {
       {{ item.value }}

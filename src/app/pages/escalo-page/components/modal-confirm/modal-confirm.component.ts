@@ -41,6 +41,16 @@ export class ModalConfirmComponent implements OnInit, OnDestroy {
   constructor() {}
 
   ngOnInit(): void {
+    const newMessages = this._configModal.data.messages.map(
+      (message: ItemModal) => {
+        return {
+          ...message,
+          value: message.pipe
+            ? new FormatDatePipe().transform(message.value)
+            : message.value,
+        };
+      }
+    );
     this.messages = this._configModal.data.messages;
   }
 

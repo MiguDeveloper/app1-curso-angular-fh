@@ -1,3 +1,4 @@
+import { ItemModal } from './../../models/item-modal.interface';
 import { DividerModule } from 'primeng/divider';
 import { Component, inject, OnInit } from '@angular/core';
 import {
@@ -15,6 +16,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import confetti from 'canvas-confetti';
 import { MessageService } from 'primeng/api';
+import { MOTIVOS_AUSENCIA_HORAS } from '../../data/constantes';
 
 @Component({
   selector: 'app-ausencia-por-horas',
@@ -37,14 +39,7 @@ import { MessageService } from 'primeng/api';
 export class AusenciaPorHorasComponent implements OnInit {
   private readonly _fb = inject(FormBuilder);
   private readonly _messageService = inject(MessageService);
-  motivosAusencia = [
-    'Compensación de HHEE',
-    'Permiso atención médica',
-    'Lactancia',
-    'Permiso para tramites pers. (4hrs máx.)',
-    'Permiso por cumpleaños (1/2 día)',
-    'Otros',
-  ];
+  motivosAusencia = MOTIVOS_AUSENCIA_HORAS;
   frmAusenciaPorHoras = this._fb.nonNullable.group({
     tipoAusencia: this._fb.group({
       tipo: ['', Validators.required],
@@ -108,6 +103,37 @@ export class AusenciaPorHorasComponent implements OnInit {
       this.frmAusenciaPorHoras.markAllAsTouched();
       return;
     }
+
+    const itemsMessage: ItemModal[] = [
+      {
+        icon: 'pi pi-check-circle',
+        label: 'Motivo',
+        value: this.tipoAusenciaField.value,
+      },
+      {
+        icon: 'pi pi-check-circle',
+        label: 'Detalle',
+        value: this.detalleTipoAusenciaField.value,
+      },
+      {
+        icon: 'pi pi-calendar',
+        label: 'Fecha',
+        pipe: 'mchFormatDate',
+        value: this.fechaAusenciaField.value,
+      },
+      {
+        icon: 'pi pi-calendar',
+        label: 'Hora inicio',
+        pipe: 'mchFormatDate',
+        value: this.horaInicioField.value,
+      },
+      {
+        icon: 'pi pi-calendar',
+        label: 'Hora fin',
+        pipe: 'mchFormatDate',
+        value: this.horaFinField.value,
+      },
+    ];
 
     this.showDialog();
   }
