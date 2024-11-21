@@ -1,0 +1,40 @@
+@if (countries.length === 0) {
+<p-messages [(value)]="messages" [enableService]="false" [closable]="false" />
+
+}@else {
+<div class="card">
+  <p-table
+    [columns]="cols"
+    [value]="countries"
+    [tableStyle]="{ 'min-width': '50rem' }"
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        @for (col of columns; track $index) {
+        <th>
+          {{ col.header }}
+        </th>
+        }
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-country>
+      <tr>
+        <td>{{ country.flag }}</td>
+        <td>
+          <img
+            [src]="country.flags.svg"
+            alt="country.name.common"
+            width="100"
+          />
+        </td>
+        <td>{{ country.name.common }}</td>
+        <td>{{ country.capital }}</td>
+        <td>{{ country.population | number }}</td>
+        <td><a [routerLink]="['../by', country.cca3]">Ver más</a></td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+}

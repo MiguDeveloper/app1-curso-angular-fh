@@ -1,0 +1,11 @@
+<countrie-search-box
+  (onSearch)="search($event)"
+  [valueInput]="valueInput"
+  [placeholder]="'Buscar por capital'"
+/>
+<p-divider />
+@if (isLoading) {
+<shared-loading-spinner />
+}@else {
+<countries-table [countries]="countries" />
+}

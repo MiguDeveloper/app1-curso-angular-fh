@@ -24,6 +24,10 @@ export const routes: Routes = [
           import('./pages/basicos2-pages/basicos2-page.routes'),
       },
       {
+        path: 'countries',
+        loadChildren: () => import('./pages/countries/countries-page.routes'),
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: '/home',

@@ -1,0 +1,8 @@
+<countrie-search-box
+  (onSearch)="search($event)"
+  [valueInput]="valueInput"
+  [placeholder]="'Buscar por País'"
+/>
+<p-divider />
+
+<countries-table [countries]="countries" />

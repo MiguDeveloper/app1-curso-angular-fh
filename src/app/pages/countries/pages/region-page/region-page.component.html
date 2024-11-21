@@ -1,0 +1,10 @@
+<p-selectButton
+  [formControl]="region"
+  [options]="regions"
+  [multiple]="false"
+  optionValue="value"
+  optionLabel="name"
+/>
+<p-divider />
+{{ region.value }}
+<countries-table [countries]="countries" />

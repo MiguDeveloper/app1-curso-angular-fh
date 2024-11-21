@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
       },
       {
         label: 'Basicos',
-        visible: false,
+        visible: true,
         icon: 'pi pi-box',
         items: [
           [
@@ -59,8 +59,8 @@ export class NavbarComponent implements OnInit {
               ],
             },
             {
-              label: 'Bathroom',
-              items: [{ label: 'Accessories' }],
+              label: 'SPA',
+              items: [{ label: 'Countries', routerLink: ['/', 'countries'] }],
             },
           ],
           [

@@ -1,0 +1,21 @@
+<div class="grid mt-1">
+  <div class="col-12 md:col-4 xl:col-2">
+    <p-menu [model]="items">
+      <ng-template pTemplate="item" let-item>
+        <a
+          [routerLink]="item.route"
+          routerLinkActive="p-menuitem-link-active"
+          class="p-menuitem-link text-sm"
+        >
+          <span [class]="item.icon"></span>
+          <span class="ml-2">{{ item.label }}</span>
+        </a>
+      </ng-template>
+    </p-menu>
+  </div>
+  <div class="col-12 md:col-8 xl:col-10">
+    <p-card>
+      <router-outlet />
+    </p-card>
+  </div>
+</div>
