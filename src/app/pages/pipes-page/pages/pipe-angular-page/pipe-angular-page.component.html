@@ -1,0 +1,117 @@
+<p-panel header="Pipes por defecto Angular" class="mb-2">
+  <p>
+    Angular provides a number of built-in pipes such as DatePipe, UpperCasePipe,
+    LowerCasePipe, CurrencyPipe, DecimalPipe, PercentPipe, and so on.
+  </p>
+</p-panel>
+<div class="grid mt-2">
+  <div class="col-12 md:col-4">
+    <p-card header="UpperCase">
+      {{ nameLower | uppercase }}
+    </p-card>
+  </div>
+  <div class="col-12 md:col-4">
+    <p-card header="LowerCase">
+      {{ nameUpper | lowercase }}
+    </p-card>
+  </div>
+  <div class="col-12 md:col-4">
+    <p-card header="TitleCase">
+      {{ fullName | titlecase }}
+    </p-card>
+  </div>
+  <div class="col-12 md:col-12">
+    <p-card header="Date">
+      <p-table [value]="formatsPipes">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Format</th>
+            <th>Result</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-format>
+          @if (!format) {
+          <tr>
+            <td>fecha</td>
+            <td>{{ customDate }}</td>
+          </tr>
+          }@else{
+          <tr>
+            <td>fecha | date:'{{ format }}'</td>
+            <td>{{ customDate | date : format : "" }}</td>
+          </tr>
+          }
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+  <div class="col-12 md:col-6">
+    <p-card>
+      <p-fieldset legend="i18nSelect Pipe" [toggleable]="true">
+        <p>
+          Saludos {{ name }} es un placer
+          {{ gender | i18nSelect : invitationMap }} a nuestro evento
+        </p>
+        <p-button (onClick)="changeClient()" label="Cambiar" />
+      </p-fieldset>
+    </p-card>
+  </div>
+  <div class="col-12 md:col-6">
+    <p-card>
+      <p-fieldset legend="i18nPlural Pipe" [toggleable]="true">
+        <p>
+          actualmente tenemos
+          {{ clientes.length | i18nPlural : clientesMap }}
+        </p>
+        <p-button (onClick)="popClients()" label="Atender cliente" />
+      </p-fieldset>
+    </p-card>
+  </div>
+  <div class="col-12 md:col-6">
+    <p-card>
+      <p-fieldset legend="Slice Pipe" [toggleable]="true">
+        <p>original</p>
+        <pre>{{ clientes }}</pre>
+        <p>slice:0:2</p>
+        <pre>{{ clientes | slice : 0 : 2 }}</pre>
+        <p>slice:1:2</p>
+        <pre>{{ clientes | slice : 1 : 2 }}</pre>
+      </p-fieldset>
+    </p-card>
+  </div>
+  <div class="col-12 md:col-6">
+    <p-card>
+      <p-fieldset legend="Json Pipe" [toggleable]="true">
+        <pre>{{ person | json }}</pre>
+      </p-fieldset>
+    </p-card>
+  </div>
+  <div class="col-12 md:col-6">
+    <p-card>
+      <p-fieldset legend="KeyValue Pipe" [toggleable]="true">
+        <ul>
+          @for (item of person|keyvalue; track $index) {
+          <li>
+            <b>{{ item.key }}</b
+            >: {{ item.value }}
+          </li>
+          }
+        </ul>
+      </p-fieldset>
+    </p-card>
+  </div>
+  <div class="col-12 md:col-6">
+    <p-card>
+      <p-fieldset legend="Async Pipe" [toggleable]="true">
+        @if (!(myObservable | async)) {
+        <pre>Resolviendo observable</pre>
+        }
+        <pre>{{ myObservable | async }}</pre>
+        @if (!(promiseValue | async)) {
+        <pre>Resolviendo promesa</pre>
+        }
+        <pre>{{ promiseValue | async }}</pre>
+      </p-fieldset>
+    </p-card>
+  </div>
+</div>

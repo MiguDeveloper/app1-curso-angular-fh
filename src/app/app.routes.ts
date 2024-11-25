@@ -28,6 +28,10 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/countries/countries-page.routes'),
       },
       {
+        path: 'pipes',
+        loadChildren: () => import('./pages/pipes-page/pipes-page.routes'),
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: '/home',

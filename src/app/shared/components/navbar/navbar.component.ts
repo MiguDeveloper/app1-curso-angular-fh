@@ -65,13 +65,16 @@ export class NavbarComponent implements OnInit {
           ],
           [
             {
-              label: 'Bedroom',
+              label: 'Pipes',
               items: [
-                { label: 'Bed' },
-                { label: 'Chaise lounge' },
-                { label: 'Cupboard' },
-                { label: 'Dresser' },
-                { label: 'Wardrobe' },
+                {
+                  label: 'Default Angular',
+                  routerLink: ['/', 'pipes', 'pipes-angular'],
+                },
+                {
+                  label: 'Personalizados',
+                  routerLink: ['/', 'pipes', 'pipes-personalizados'],
+                },
               ],
             },
           ],
