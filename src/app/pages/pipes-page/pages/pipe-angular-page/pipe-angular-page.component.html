@@ -103,14 +103,15 @@
   <div class="col-12 md:col-6">
     <p-card>
       <p-fieldset legend="Async Pipe" [toggleable]="true">
-        @if (!(myObservable | async)) {
+        <!--@if (!(myObservable | async)) {
         <pre>Resolviendo observable</pre>
         }
-        <pre>{{ myObservable | async }}</pre>
+        <pre>myObservable | async</pre>
         @if (!(promiseValue | async)) {
         <pre>Resolviendo promesa</pre>
         }
-        <pre>{{ promiseValue | async }}</pre>
+        <pre>promiseValue | async </pre>
+      -->
       </p-fieldset>
     </p-card>
   </div>

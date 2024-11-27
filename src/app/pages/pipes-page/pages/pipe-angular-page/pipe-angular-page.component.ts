@@ -5,7 +5,7 @@ import { PanelModule } from 'primeng/panel';
 import { TableModule } from 'primeng/table';
 import { FieldsetModule } from 'primeng/fieldset';
 import { ButtonModule } from 'primeng/button';
-import { interval, last, Observable, tap } from 'rxjs';
+import { interval, Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-pipe-angular-page',
