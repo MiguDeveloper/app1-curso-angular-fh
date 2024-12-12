@@ -1,0 +1,97 @@
+<h2>Reactivos: <small> Dinámicos </small></h2>
+<hr />
+
+<div class="grid">
+  <div class="col-12 md:col-6">
+    <form [formGroup]="formDynamic" autocomplete="off">
+      <!-- Nombre -->
+      <div class="field flex flex-column">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="name"
+          placeholder="Nombre"
+        />
+        @if (formDynamic.controls.name.invalid &&
+        formDynamic.controls.name.touched) {
+        <span
+          mch-msgValidationField
+          [errors]="formDynamic.controls.name.errors"
+          class="text-xs text-red-500"
+        >
+        </span>
+        }
+      </div>
+
+      <!-- Agregar Favorito -->
+      <div class="field flex flex-column">
+        <label>Agregar favorito</label>
+        <div class="grid">
+          <div class="col-8">
+            <input
+              type="text"
+              class="w-full"
+              pInputText
+              placeholder="favorito"
+              [formControl]="newFavoriteGame"
+            />
+            @if (newFavoriteGame.invalid && newFavoriteGame.touched) {
+            <span
+              mch-msgValidationField
+              [errors]="newFavoriteGame.errors"
+              class="text-xs text-red-500"
+            ></span>
+            }
+          </div>
+          <p-button
+            [outlined]="true"
+            (onClick)="addGame()"
+            class="col-4"
+            label="Agregar favorito"
+          />
+        </div>
+      </div>
+
+      <!-- Lista de Juegos Favoritos -->
+      <div class="flex flex-column" formArrayName="favoriteGames">
+        @if (favoriteGames.controls.length > 0) {
+        <label class="col-sm-3 col-form-label">Favoritos</label>
+        } @for (game of favoriteGames.controls; track game; let idx = $index) {
+        <div class="grid mb-2">
+          <div class="col-8">
+            <input pInputText [formControlName]="idx" class="w-full" />
+            @if (game.invalid && game.touched) {
+            <span
+              mch-msgValidationField
+              [errors]="game.errors"
+              class="text-xs text-red-500"
+            >
+              Este campo es requerido
+            </span>
+            }
+          </div>
+          <p-button
+            [outlined]="true"
+            (onClick)="removeGame(idx)"
+            class="col-4 btn btn-outline-danger"
+            type="button"
+            label="Eliminar"
+          />
+        </div>
+        }
+      </div>
+      <p-button (onClick)="submitForm()" label="Enviar" />
+    </form>
+  </div>
+</div>
+<span>Valid form</span>
+<pre>{{ formDynamic.valid | json }}</pre>
+<br />
+
+<p>favorite game</p>
+<pre>{{ newFavoriteGame.value | json }}</pre>
+
+<span>Value</span>
+<pre>{{ formDynamic.value | json }}</pre>
+<br />

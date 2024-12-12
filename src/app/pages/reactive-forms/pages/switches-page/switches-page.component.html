@@ -1,0 +1,90 @@
+<h2>Reactivos: Switches</h2>
+<hr />
+
+<form [formGroup]="formSwitches" autocomplete="off">
+  <!-- Radio -->
+  <div class="flex flex-column">
+    <label class="text-sm">Género</label>
+    <div class="flex flex-column">
+      <div class="flex align-items-center mb-1">
+        <p-radioButton
+          formControlName="genero"
+          inputId="radioMasculino"
+          name="genero"
+          value="M"
+        />
+        <label for="radioMasculino" class="ml-2 text-sm"> Masculino </label>
+      </div>
+      <div class="flex align-items-center mb-1">
+        <p-radioButton
+          formControlName="genero"
+          inputId="radioFemenino"
+          name="genero"
+          value="F"
+        />
+        <label for="radioFemenino" class="ml-2 text-sm"> Femenino </label>
+      </div>
+    </div>
+    @if (formSwitches.controls.genero.invalid &&
+    formSwitches.controls.genero.touched) {
+    <div
+      mch-msgValidationField
+      [errors]="formSwitches.controls.genero.errors"
+      class="text-xs text-red-500"
+    ></div>
+    }
+  </div>
+
+  <!-- Switches -->
+  <div class="flex flex-column">
+    <label class="text-sm mt-2">Notificaciones</label>
+    <div class="flex align-items-center gap-1">
+      <p-selectButton
+        [options]="stateOptions"
+        formControlName="notificaciones"
+        optionLabel="label"
+        ptionValue="value"
+        id="switchNotificaciones"
+      />
+      <label class="ml-2 text-sm" for="switchNotificaciones"
+        >Quiero recibir notificaciones</label
+      >
+    </div>
+  </div>
+
+  <!-- Switches -->
+  <div class="flex flex-column gap-1 my-2">
+    <div class="flex align-items-center gap-1">
+      <p-checkbox formControlName="terminos" [binary]="true" />
+      <label for="ny" class="text-xs">Términos y condiciones de uso</label>
+    </div>
+    @if (formSwitches.controls.terminos.invalid &&
+    formSwitches.controls.terminos.touched) {
+    <div
+      mch-msgValidationField
+      [errors]="formSwitches.controls.terminos.errors"
+      class="text-xs text-red-500"
+    ></div>
+    }
+  </div>
+
+  <!-- Boton submit -->
+  <p-button label="Enviar" (onClick)="submitForm()" />
+</form>
+
+<h5>Valor del formulario</h5>
+<pre>{{ formSwitches.value | json }}</pre>
+<br />
+
+<h5>Persona</h5>
+<pre>{{ "object" | json }}</pre>
+<br />
+
+<h5>Invalid</h5>
+<pre>{{ formSwitches.invalid | json }}</pre>
+
+<!-- <h5>Términos</h5> -->
+<!-- <pre>{{ myForm.controls?.terminos?.errors | json }}</pre> -->
+
+<!-- <br>
+<pre>Condiciones: </pre> -->

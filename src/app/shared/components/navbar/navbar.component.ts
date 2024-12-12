@@ -80,13 +80,24 @@ export class NavbarComponent implements OnInit {
           ],
           [
             {
-              label: 'Office',
+              label: 'Reactive forms',
               items: [
-                { label: 'Bookcase' },
-                { label: 'Cabinet' },
-                { label: 'Chair' },
-                { label: 'Desk' },
-                { label: 'Executive Chair' },
+                {
+                  label: 'Basic form',
+                  routerLink: ['/', 'reactive-forms', 'basic-forms'],
+                },
+                {
+                  label: 'Dynamic form',
+                  routerLink: ['/', 'reactive-forms', 'dynamic-forms'],
+                },
+                {
+                  label: 'Switches',
+                  routerLink: ['/', 'reactive-forms', 'switches'],
+                },
+                {
+                  label: 'Register',
+                  routerLink: ['/', 'reactive-forms', 'register'],
+                },
               ],
             },
           ],

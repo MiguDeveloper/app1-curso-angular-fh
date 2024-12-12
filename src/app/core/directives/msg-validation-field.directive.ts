@@ -49,5 +49,29 @@ export class MsgValidationFieldDirective {
         'Este campo debe ser un correo electrónico';
       return;
     }
+
+    if (keys.includes('min')) {
+      const min = this._errors['min']['min'];
+      this._htmlElement.nativeElement.innerText = `El valor mínimo es ${min}`;
+      return;
+    }
+
+    if (keys.includes('nameStrider')) {
+      this._htmlElement.nativeElement.innerText =
+        'Este nombre no está permitido';
+      return;
+    }
+
+    if (keys.includes('emailInvalid')) {
+      this._htmlElement.nativeElement.innerText =
+        'Formato de  correo no es válido';
+      return;
+    }
+
+    if (keys.includes('passwordNotMatch')) {
+      this._htmlElement.nativeElement.innerText =
+        'Las contraseñas no coincidendeded';
+      return;
+    }
   }
 }

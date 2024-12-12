@@ -1,0 +1,95 @@
+<div class="grid">
+  <div class="col md:col-6">
+    <h2>Reactivos: Básicos</h2>
+    <hr />
+
+    <form [formGroup]="formBasic" autocomplete="off">
+      <!-- Campo de producto -->
+      <div class="field">
+        <label class="col-sm-3 col-form-label">Producto</label>
+
+        <input
+          formControlName="name"
+          type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          placeholder="Nombre del producto"
+        />
+
+        @if (formBasic.controls.name.invalid && formBasic.controls.name.touched)
+        {
+        <div
+          mch-msgValidationField
+          [errors]="formBasic.controls.name.errors"
+          class="text-xs text-red-500"
+        ></div>
+        }
+      </div>
+
+      <!-- Campo de producto -->
+      <div class="field">
+        <label class="col-sm-3 col-form-label">Precio</label>
+        <input
+          formControlName="price"
+          type="number"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          placeholder="Precio del producto"
+        />
+        @if (formBasic.controls.price.invalid &&
+        formBasic.controls.price.touched) {
+        <div
+          mch-msgValidationField
+          [errors]="formBasic.controls.price.errors"
+          class="text-xs text-red-500"
+        ></div>
+        }
+      </div>
+
+      <!-- Campo de existencias -->
+      <div class="field">
+        <label class="col-sm-3 col-form-label">Existencias</label>
+        <input
+          formControlName="inStorage"
+          type="number"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          placeholder="Existencias del producto"
+        />
+        @if (formBasic.controls.inStorage.invalid &&
+        formBasic.controls.inStorage.touched) {
+        <div
+          mch-msgValidationField
+          [errors]="formBasic.controls.inStorage.errors"
+          class="text-xs text-red-500"
+        ></div>
+        }
+      </div>
+      <p-button (onClick)="onSave()" label="Enviar" />
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <span>Valid</span>
+    <pre>{{ formBasic.valid | json }}</pre>
+
+    <span>Pristine</span>
+    <pre>{{ formBasic.pristine | json }}</pre>
+
+    <span>Touched</span>
+    <pre>{{ formBasic.touched | json }}</pre>
+
+    <span>Value</span>
+    <pre>{{ formBasic.value | json }}</pre>
+
+    <span>Precio</span>
+    <pre>{{ formBasic.controls.price.value | json }}</pre>
+
+    <span>Precio - errors</span>
+    <pre>{{ formBasic.controls.price.errors | json }}</pre>
+
+    <span>Name</span>
+    <pre>{{ formBasic.controls.name.value | json }}</pre>
+
+    <span>Name - errors</span>
+    <pre>{{ formBasic.controls.name.errors | json }}</pre>
+  </div>
+</div>

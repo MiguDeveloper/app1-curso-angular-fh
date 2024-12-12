@@ -32,6 +32,11 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/pipes-page/pipes-page.routes'),
       },
       {
+        path: 'reactive-forms',
+        loadChildren: () =>
+          import('./pages/reactive-forms/reactive-forms.routes'),
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: '/home',

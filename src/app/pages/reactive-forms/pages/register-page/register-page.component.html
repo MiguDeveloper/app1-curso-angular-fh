@@ -1,0 +1,136 @@
+<h2>Validaciones Reactivas</h2>
+<hr />
+
+<form [formGroup]="formRegister" class="col-12 md:col-6" autocomplete="off">
+  <!-- Nombre -->
+  <div class="flex flex-column mb-2">
+    <label for="nombre">Nombre</label>
+    <input
+      type="text"
+      pInputText
+      formControlName="name"
+      id="nombre"
+      placeholder="Nombre del usuario"
+    />
+    @if (formRegister.controls.name.invalid &&
+    formRegister.controls.name.touched) {
+    <span
+      mch-msgValidationField
+      [errors]="formRegister.controls.name.errors"
+      class="text-xs text-red-500"
+    >
+    </span>
+    }
+  </div>
+
+  <!-- Email -->
+  <div class="flex flex-column mb-2">
+    <label for="email">Email</label>
+    <input
+      type="text"
+      pInputText
+      formControlName="email"
+      id="email"
+      placeholder="Email del usuario"
+    />
+    @if (formRegister.controls.email.invalid &&
+    formRegister.controls.email.touched) {
+    <span
+      mch-msgValidationField
+      [errors]="formRegister.controls.email.errors"
+      class="text-xs text-red-500"
+    ></span>
+    } @if (formRegister.controls.email.pending) {
+    <span class="text-xs text-blue-500">Validando email...</span>
+    }
+  </div>
+
+  <!-- Username -->
+  <div class="flex flex-column mb-2">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      pInputText
+      formControlName="username"
+      id="username"
+      placeholder="Nombre código del usuario"
+    />
+    @if (formRegister.controls.username.invalid &&
+    formRegister.controls.username.touched) {
+    <span
+      mch-msgValidationField
+      [errors]="formRegister.controls.username.errors"
+      class="text-xs text-red-500"
+    ></span>
+    }
+  </div>
+
+  <!-- Password -->
+  <div class="flex flex-column mb-2">
+    <label for="password">Password</label>
+    <input
+      type="text"
+      pInputText
+      formControlName="password"
+      id="password"
+      placeholder="Password de su cuenta"
+    />
+    @if (formRegister.controls.password.invalid &&
+    formRegister.controls.password.touched) {
+    <span
+      mch-msgValidationField
+      [errors]="formRegister.controls.password.errors"
+      class="text-xs text-red-500"
+    ></span>
+    }
+  </div>
+
+  <!-- Password2 -->
+  <div class="flex flex-column mb-2">
+    <label for="confirmPass">Confirmar password</label>
+    <input
+      type="text"
+      pInputText
+      formControlName="confirmPass"
+      id="confirmPass"
+      placeholder="Password de su cuenta"
+    />
+    @if (formRegister.controls.confirmPass.invalid &&
+    formRegister.controls.confirmPass.touched) {
+    <span
+      mch-msgValidationField
+      [errors]="formRegister.controls.confirmPass.errors"
+      class="text-xs text-red-500"
+    ></span>
+    } @if (formRegister.hasError('passwordNotMatch')) {
+    <span
+      mch-msgValidationField
+      [errors]="formRegister.errors"
+      class="text-xs text-red-500"
+    ></span>
+    }
+  </div>
+
+  <p-button (onClick)="submitForm()" label="Crear" />
+</form>
+
+<h2>Form Valid: {{ formRegister.valid }}</h2>
+<h2>Form Status: {{ formRegister.status }}</h2>
+<h2>Form Pending: {{ formRegister.pending }}</h2>
+<h2>Form errors</h2>
+<pre>{{ formRegister.errors | json }}</pre>
+
+<h5>Nombre</h5>
+<pre>{{ formRegister.controls.name.errors | json }}</pre>
+
+<h5>Email</h5>
+<pre>{{ formRegister.controls.email.errors | json }}</pre>
+
+<h5>Username</h5>
+<pre>{{ formRegister.controls.username.errors | json }}</pre>
+
+<h5>Password</h5>
+<pre>{{ formRegister.controls.password.errors | json }}</pre>
+
+<h5>Confirmar</h5>
+<pre>{{ formRegister.controls.confirmPass.errors | json }}</pre>
