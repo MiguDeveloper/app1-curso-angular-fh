@@ -1,0 +1,38 @@
+<h1>Selectores anidados</h1>
+<hr />
+<form [formGroup]="formChaining">
+  <div class="flex flex-column mb-2">
+    <label>Continente</label>
+    <p-dropdown
+      formControlName="region"
+      [options]="regions"
+      optionLabel="name"
+      placeholder="Select a continent"
+    />
+  </div>
+  @if (formChaining.controls.region.value) {
+  <div class="flex flex-column mb-2">
+    <label>País</label>
+    <p-dropdown
+      formControlName="country"
+      [options]="countries"
+      optionLabel="name"
+      placeholder="Select a country"
+    />
+  </div>
+  } @if (formChaining.controls.country.value && borders.length) {
+  <div class="flex flex-column">
+    <label>Fronteras</label>
+    <p-dropdown
+      formControlName="border"
+      [options]="borders"
+      optionLabel="name"
+      placeholder="Select a border"
+    />
+  </div>
+  }
+</form>
+<br /><br /><br />
+<pre>{{ formChaining.value | json }}</pre>
+<br /><br /><br />
+<p>Invalid form: {{ formChaining.invalid }}</p>

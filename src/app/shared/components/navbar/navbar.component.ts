@@ -98,6 +98,10 @@ export class NavbarComponent implements OnInit {
                   label: 'Register',
                   routerLink: ['/', 'reactive-forms', 'register'],
                 },
+                {
+                  label: 'Controles anidados',
+                  routerLink: ['/', 'reactive-forms', 'chaining-controls'],
+                },
               ],
             },
           ],
