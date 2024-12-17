@@ -37,6 +37,10 @@ export const routes: Routes = [
           import('./pages/reactive-forms/reactive-forms.routes'),
       },
       {
+        path: 'life-cycles',
+        loadChildren: () => import('./pages/life-cycles/life-cycles.routes'),
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: '/home',

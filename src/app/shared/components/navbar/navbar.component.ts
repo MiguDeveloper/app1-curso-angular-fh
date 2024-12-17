@@ -37,6 +37,23 @@ export class NavbarComponent implements OnInit {
         ],
       },
       {
+        label: 'Life cycles',
+        icon: 'pi pi-cog',
+        items: [
+          [
+            {
+              label: 'ciclos de vida',
+              items: [
+                {
+                  label: 'lifecycles',
+                  routerLink: ['/', 'life-cycles', 'basic'],
+                },
+              ],
+            },
+          ],
+        ],
+      },
+      {
         label: 'Basicos',
         visible: true,
         icon: 'pi pi-box',

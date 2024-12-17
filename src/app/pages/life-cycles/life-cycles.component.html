@@ -1,0 +1,18 @@
+<router-outlet></router-outlet>
+@if (isProductVisible) {
+<app-product-price [price]="currentPrice" />
+}
+<div class="flex gap-1">
+  <button
+    (click)="toggleProductVisibility()"
+    class="bg-primary border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-primary-600 hover:border-primary-600 active:bg-primary-700 active:border-primary-700"
+  >
+    Toggle
+  </button>
+  <button
+    (click)="toggleIncreasePrice()"
+    class="bg-green-200 border-green-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-green-600 hover:border-green-600 active:bg-green-700 active:border-green-700"
+  >
+    +2Toggle
+  </button>
+</div>
