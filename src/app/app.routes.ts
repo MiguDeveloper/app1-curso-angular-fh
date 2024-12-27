@@ -41,6 +41,10 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/life-cycles/life-cycles.routes'),
       },
       {
+        path: 'main-signals',
+        loadChildren: () => import('./pages/signals/signals.routes'),
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: '/home',

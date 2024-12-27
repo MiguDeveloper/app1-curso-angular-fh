@@ -1,0 +1,8 @@
+<p>Counter {{ counter() }}</p>
+<hr />
+<p>Square counter {{ squareCounter() }}</p>
+<div class="flex gap-1">
+  <p-button label="-1" (onClick)="increaseBy(-1)"></p-button>
+  <p-button label="+1" (onClick)="increaseBy(1)"></p-button>
+  <p-button (onClick)="counter.set(0)" label="Reset"></p-button>
+</div>

@@ -1,0 +1,24 @@
+<h1>Información del usuario</h1>
+<hr />
+<h3>Usuario actual: {{ userId() }}</h3>
+<div class="flex gap-1 mb-2">
+  <p-button (onClick)="loadUser(userId() - 1)" label="Anterior"></p-button>
+  <p-button (onClick)="loadUser(userId() + 1)" label="Siguiente"></p-button>
+</div>
+@if (userWasFound()) {
+<div class="flex flex-column">
+  <h3>Usuario: {{ currentUser()?.id }}</h3>
+  <p>Correo: {{ currentUser()?.email }}</p>
+  <p>Nombre: {{ currentUser()?.first_name }} {{ currentUser()?.last_name }}</p>
+  <img
+    width="200px"
+    [src]="currentUser()?.avatar"
+    [alt]="currentUser()?.first_name"
+    class=""
+  />
+</div>
+} @else {
+<div class="flex">
+  <h3>Usuario no encontrado</h3>
+</div>
+}

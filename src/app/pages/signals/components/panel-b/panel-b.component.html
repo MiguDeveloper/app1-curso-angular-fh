@@ -1,0 +1,23 @@
+<p-card header="Sin signals">
+  <div class="flex gap-1">
+    <input type="text" pInputText [formControl]="inputTask" />
+    <p-button
+      label="Add task"
+      (click)="addTask()"
+      severity="success"
+    ></p-button>
+  </div>
+  <ul>
+    @for (task of tasks; track $index) {
+    <li>{{ task }}</li>
+    }
+  </ul>
+  <p-button
+    label="Change first task"
+    (click)="changeFirstTask()"
+    severity="danger"
+  ></p-button>
+  @if (check()) {
+  <p>de</p>
+  }
+</p-card>

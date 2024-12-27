@@ -54,6 +54,23 @@ export class NavbarComponent implements OnInit {
         ],
       },
       {
+        label: 'Signals',
+        icon: 'pi pi-cog',
+        items: [
+          [
+            {
+              label: 'Uso signals',
+              items: [
+                {
+                  label: 'Signals',
+                  routerLink: ['/', 'main-signals', 'signals'],
+                },
+              ],
+            },
+          ],
+        ],
+      },
+      {
         label: 'Basicos',
         visible: true,
         icon: 'pi pi-box',

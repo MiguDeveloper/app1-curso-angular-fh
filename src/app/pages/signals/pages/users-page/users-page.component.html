@@ -1,0 +1,35 @@
+<p-card header="Usuario sin señales (tradicional)">
+  <h3>Total de usuarios {{ users.length }}</h3>
+  <hr />
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First</th>
+        <th>last</th>
+        <th>Email</th>
+        <th>Avatar</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (user of users; track user.id; let idx = $index) {
+      <tr>
+        <td>{{ idx + 1 }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.email }}</td>
+        <td><img [src]="user.avatar" [alt]="user.first_name" /></td>
+        <td></td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  <button
+    pButton
+    pRipple
+    (click)="loadUsers(currentPage + 1)"
+    class="p-button-primary"
+  >
+    Cargar más - Página ({{ currentPage }})
+  </button>
+</p-card>
