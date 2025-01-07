@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from '@shared/layout/main-layout/main-layout.component';
+import { isAuthenticatedGuard } from './pages/auth-page/guards/is-authenticated.guard';
 
 export const routes: Routes = [
   {
     path: '',
+    canActivate: [isAuthenticatedGuard],
     component: MainLayoutComponent,
     children: [
       {

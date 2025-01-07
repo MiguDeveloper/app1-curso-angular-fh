@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MegaMenuItem } from 'primeng/api';
 import { MegaMenuModule } from 'primeng/megamenu';
+import { SideNavComponent } from '../side-nav/side-nav.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MegaMenuModule],
+  imports: [MegaMenuModule, SideNavComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })

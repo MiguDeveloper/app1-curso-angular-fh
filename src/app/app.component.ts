@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, effect, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
+import { AuthService } from './pages/auth-page/services/auth.service';
+import { AuthStatus } from './pages/auth-page/interfaces/auth.interfaces';
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet],
-  template: '<router-outlet />',
+  templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   title = 'app1-curso-angular-fh';
+
+  private _authService = inject(AuthService);
+  finishedAuthCheck = computed(() => {
+    if (this._authService.authStatus() === AuthStatus.checking) {
+      return false;
+    }
+    return true;
+  });
+
+  authStatusChangedEffect = effect(() => {
+    console.log('authStatus', this._authService.authStatus());
+  });
 
   constructor(private primengConfig: PrimeNGConfig) {}
 
