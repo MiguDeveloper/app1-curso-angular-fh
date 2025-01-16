@@ -5,7 +5,7 @@ import { isAuthenticatedGuard } from './pages/auth-page/guards/is-authenticated.
 export const routes: Routes = [
   {
     path: '',
-    canActivate: [isAuthenticatedGuard],
+    //canActivate: [isAuthenticatedGuard],
     component: MainLayoutComponent,
     children: [
       {
@@ -45,6 +45,10 @@ export const routes: Routes = [
       {
         path: 'main-signals',
         loadChildren: () => import('./pages/signals/signals.routes'),
+      },
+      {
+        path: 'new-features',
+        loadChildren: () => import('./pages/new-features/new-features.routes'),
       },
       {
         path: '',

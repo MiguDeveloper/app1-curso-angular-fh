@@ -1,0 +1,37 @@
+<app-title title="Control Flow" />
+<h2 class="text-lg font-semibold">if: {{ showContent() }}</h2>
+
+<p-button (click)="toggleContent()" label="Change showContent" />
+
+@if (showContent()) {
+<p>Hola Miguel</p>
+} @else {
+<p>**********</p>
+
+}
+
+<hr />
+
+<h2 class="text-lg font-semibold">Switch: {{ grade() }}</h2>
+@switch (grade()) { @case ('A') {
+<p>Arriba de 90</p>
+} @case('B') {
+<p>Arriba de 80</p>
+} @default {
+<p>Reprobado</p>
+} }
+
+<hr />
+<h2 class="text-lg font-semibold"></h2>
+<ul class="list-none">
+  @for (framework of frameworks(); track $index;) {
+  <li>{{ $index + 1 }} {{ framework }}</li>
+  }
+</ul>
+<ul>
+  @for (framework of frameworksOld(); track $index) {
+  <li>{{ framework }}</li>
+  } @empty {
+  <p>Fremeworks old is empty</p>
+  }
+</ul>

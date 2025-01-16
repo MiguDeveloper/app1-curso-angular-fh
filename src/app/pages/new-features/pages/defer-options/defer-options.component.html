@@ -1,0 +1,73 @@
+<app-title title="Defer trigger options" />
+<div>
+  <h1 class="text-lg">Interacciones 1</h1>
+  <hr class="my-1" />
+  @defer (on interaction) {
+  <app-heavy-loaders-fast bgColor="bg-yellow-300">
+    <p class="text-100">on interactions!</p>
+  </app-heavy-loaders-fast>
+
+  }@placeholder {
+  <p class="h-20rem bg-green-100">Click en el div</p>
+  }
+</div>
+
+<div>
+  <p-button label="click deploy defer" #btnDeploy />
+  @defer (on interaction(btnDeploy)) {
+  <app-heavy-loaders-fast bgColor="bg-blue-200">
+    <p class="text-100">on interactions 2</p>
+  </app-heavy-loaders-fast>
+
+  }@placeholder {
+  <p class="h-20rem bg-green-100">
+    Click en el button, responsabilidad delegada al botón
+  </p>
+  }
+</div>
+
+<div>
+  @defer (on hover) {
+  <app-heavy-loaders-fast bgColor="bg-blue-200">
+    <p class="text-100">on interactions 3</p>
+  </app-heavy-loaders-fast>
+
+  }@placeholder {
+  <p class="h-20rem bg-green-100">
+    responsabilidad delegada al hover del placeholder
+  </p>
+  }
+</div>
+
+<div>
+  @defer (on immediate) {
+  <app-heavy-loaders-fast bgColor="bg-blue-200">
+    <p class="text-100">on interactions immediate</p>
+  </app-heavy-loaders-fast>
+
+  }@placeholder {
+  <p class="h-20rem bg-green-100">responsabilidad delegada al placeholder</p>
+  }
+</div>
+
+<div>
+  @defer (on timer(2000)) {
+  <app-heavy-loaders-fast bgColor="bg-blue-200">
+    <p class="text-100">on timer</p>
+  </app-heavy-loaders-fast>
+
+  }@placeholder {
+  <p class="h-20rem bg-green-100">responsabilidad delegada al timer</p>
+  }
+</div>
+
+<div>
+  @defer (on hover; prefetch on idle) {
+  <app-heavy-loaders-fast bgColor="bg-blue-200">
+    <p class="text-100">on hover, idle</p>
+  </app-heavy-loaders-fast>
+
+  }@placeholder {
+  <p class="h-20rem bg-green-100">responsabilidad delegada al hover</p>
+  }
+</div>

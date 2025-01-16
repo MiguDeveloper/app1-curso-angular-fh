@@ -1,0 +1,16 @@
+<app-title title="Defer views/blocks" />
+<div class="flex flex-column">
+  @defer () {
+  <app-heavy-loaders-slow [bgColor]="'bg-primary'" />
+  }@placeholder {
+  <p class="h-screen bg-green-100">Cargando...</p>
+  } @defer (on viewport) { on viewport
+  <app-heavy-loaders-slow [bgColor]="'surface-overlay'" />
+  }@placeholder {
+  <p class="h-25rem bg-green-100">Cargando...</p>
+  } @defer (on viewport) { on viewport
+  <app-heavy-loaders-slow [bgColor]="'bg-blue-200'" />
+  }@placeholder {
+  <p class="h-screen bg-green-100">Cargando...</p>
+  }
+</div>

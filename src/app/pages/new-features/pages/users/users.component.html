@@ -1,0 +1,13 @@
+<app-title title="Listado de usuarios" />
+<ul>
+  @for (user of userServices.users(); track user.id) {
+  <li>
+    <img [srcset]="user.avatar" [alt]="user.first_name" />
+    <a [routerLink]="['../user', user.id]"
+      >{{ user.first_name }} {{ user.last_name }}</a
+    >
+  </li>
+  }@empty {
+  <p>Cargando datos...</p>
+  }
+</ul>

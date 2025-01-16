@@ -142,6 +142,23 @@ export class NavbarComponent implements OnInit {
           ],
         ],
       },
+      {
+        label: 'New features',
+        icon: 'pi pi-cog',
+        items: [
+          [
+            {
+              label: 'Main features',
+              items: [
+                {
+                  label: 'Change detection',
+                  routerLink: ['/', 'new-features', 'change-detection'],
+                },
+              ],
+            },
+          ],
+        ],
+      },
     ];
   }
 }

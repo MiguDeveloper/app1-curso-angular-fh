@@ -1,0 +1,8 @@
+<app-title [title]="fullName()" />
+@if (user()) {
+<img src="" [alt]="user()?.first_name" [srcset]="user()?.avatar" />
+<p>{{ user()?.first_name }} {{ user()?.last_name }}</p>
+<p>{{ user()?.email }}</p>
+} @else {
+<p>cargando...</p>
+}
