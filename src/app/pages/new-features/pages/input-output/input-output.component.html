@@ -1,0 +1,10 @@
+<h2>Listado de productos</h2>
+<hr />
+<div class="flex gap-1 flex-wrap">
+  @for (product of products(); track product.id) {
+  <app-product-card
+    [product]="product"
+    (onIncrementQuantity)="updateProduct(product, $event)"
+  />
+  }
+</div>

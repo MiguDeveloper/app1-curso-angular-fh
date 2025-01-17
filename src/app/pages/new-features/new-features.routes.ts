@@ -8,6 +8,7 @@ import { ViewTransitionComponent } from './pages/view-transition/view-transition
 import { UserComponent } from './pages/user/user.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ViewTransition2Component } from './pages/view-transition/view-transition2.component';
+import { InputOutputComponent } from './pages/input-output/input-output.component';
 
 export default [
   {
@@ -53,6 +54,11 @@ export default [
         path: 'view-transition-end',
         title: 'View transition end',
         component: ViewTransition2Component,
+      },
+      {
+        path: 'input-output',
+        title: 'Input output',
+        component: InputOutputComponent,
       },
       {
         path: '**',

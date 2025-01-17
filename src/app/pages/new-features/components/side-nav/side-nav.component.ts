@@ -46,5 +46,10 @@ export class SideNavComponent {
       icon: 'pi pi-angle-right',
       route: 'view-transition-end',
     },
+    {
+      label: 'Input output',
+      icon: 'pi pi-angle-right',
+      route: 'input-output',
+    },
   ]);
 }
